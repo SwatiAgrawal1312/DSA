@@ -1,5 +1,6 @@
 class Solution {
     public int maxProfit(int[] prices) {
+        //swati agrawal
         int maxprofit=0;
         int buy_price=prices[0];
         int curr_profit=0;
