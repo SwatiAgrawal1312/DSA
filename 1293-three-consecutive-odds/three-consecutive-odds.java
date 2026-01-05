@@ -4,19 +4,20 @@ class Solution {
         for(int i=0;i<arr.length;i++){
             if(arr[i]%2!=0){
                 count++;
-                if(count==3) return true;
             }
             else{
                 count=0;
             }
-            
+            if(count>=3){
+                break;
+            }
            
             
            
 
             
         }
-       
+        if(count==3) return true;
         return false;
         
     }
