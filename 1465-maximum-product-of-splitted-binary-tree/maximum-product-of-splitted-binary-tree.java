@@ -15,7 +15,7 @@
  */
 class Solution {
     long maxpro=0;
-    int MOD = 1_000_000_007;
+    int MOD = 1000000007;
     
     int tsum=0;
     public int maxProduct(TreeNode root) {
