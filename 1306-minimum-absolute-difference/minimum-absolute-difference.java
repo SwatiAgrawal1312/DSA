@@ -19,15 +19,8 @@ class Solution {
                 result.add(ans);
 
             }
-           
         }
 
         return result;
-
-
-        
-        
-        
-        
     }
 }
