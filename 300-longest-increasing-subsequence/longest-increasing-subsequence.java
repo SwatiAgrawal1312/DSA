@@ -6,7 +6,7 @@ class Solution {
         dp=new int[n+1][n+1];
         for(int i=0;i<dp.length;i++){
             for(int j=0;j<dp.length;j++){
-                dp[i][j]=Integer.MIN_VALUE;
+                dp[i][j]=-1;
             }
         }
        
@@ -19,7 +19,7 @@ class Solution {
             return 0;
         }
         int x=0;
-        if(dp[p+1][i]!=Integer.MIN_VALUE){
+        if(dp[p+1][i]!=-1){
             return dp[p+1][i];
         }
         if(p==-1||nums[p]<nums[i]){
