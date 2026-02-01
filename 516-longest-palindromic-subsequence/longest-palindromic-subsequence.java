@@ -9,7 +9,7 @@ class Solution {
                 if(i==j){
                     dp[i][j]= 1;
                 }else{
-                    dp[i][j]=1005;
+                    dp[i][j]=1000;
                 }
             }
         }
@@ -23,7 +23,7 @@ class Solution {
         if(i>j){
             return 0;
         }
-        if(dp[i][j]!=1005){
+        if(dp[i][j]!=1000){
             return dp[i][j];
         }
         if(s.charAt(i)==s.charAt(j)){
