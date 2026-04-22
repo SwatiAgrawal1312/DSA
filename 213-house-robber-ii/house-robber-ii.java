@@ -1,21 +1,20 @@
 class Solution {
     
    int dp[];
+   int n;
     public int rob(int[] nums) {
-        int n=nums.length;
+        
+        n=nums.length;
         if(n==1){
             return nums[0];
         }
         dp=new int[101];
-        for(int i=0;i<dp.length;i++){
-            dp[i]=-1;
-        }
-        int case1= solve(nums,0,n-2);
+        Arrays.fill(dp,-1);
+        int case1=solve(nums,0,n-2);
         dp=new int[101];
-        for(int i=0;i<dp.length;i++){
-            dp[i]=-1;
-        }
+        Arrays.fill(dp,-1);
         int case2=solve(nums,1,n-1);
+       
         return Math.max(case1,case2);
         
     }
