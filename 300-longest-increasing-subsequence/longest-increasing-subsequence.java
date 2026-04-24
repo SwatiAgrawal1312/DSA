@@ -1,31 +1,26 @@
 class Solution {
     int dp[][];
-    int n;
     public int lengthOfLIS(int[] nums) {
-        n=nums.length;
-        dp=new int[n+1][n+1];
-        for(int i=0;i<dp.length;i++){
-            for(int j=0;j<dp.length;j++){
-                dp[i][j]=-1;
-            }
+        dp=new int[2501][2501];
+         for(int rows[]:dp){
+            Arrays.fill(rows,-1);
         }
-       
-        return solve(nums,-1,0);
-        
+        return helper(nums,0,-1);
         
     }
-    public int solve(int[] nums,int p,int i){
-        if(i>=n){
+    public int helper(int[] nums,int i,int prev){
+       
+        if(i>=nums.length){
             return 0;
         }
-        int x=0;
-        if(dp[p+1][i]!=-1){
-            return dp[p+1][i];
+        if (dp[i][prev + 1] != -1) {
+            return dp[i][prev + 1];
         }
-        if(p==-1||nums[p]<nums[i]){
-            x=1+solve(nums,i,i+1);
+        int take=0;
+        if(prev==-1||nums[prev]<nums[i]){
+           take=1+helper(nums,i+1,i);
         }
-        int y=solve(nums,p,i+1);
-        return dp[p+1][i]=Math.max(x,y);
+        int skip=helper(nums,i+1,prev);
+        return dp[i][prev+1]=Math.max(take,skip);
     }
 }
