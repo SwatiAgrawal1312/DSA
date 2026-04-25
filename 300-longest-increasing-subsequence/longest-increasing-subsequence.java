@@ -1,7 +1,7 @@
 class Solution {
     int dp[][];
     public int lengthOfLIS(int[] nums) {
-        dp=new int[2501][2501];
+        dp=new int[2500][2501];
          for(int rows[]:dp){
             Arrays.fill(rows,-1);
         }
