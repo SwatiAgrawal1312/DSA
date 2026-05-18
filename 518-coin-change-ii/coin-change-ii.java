@@ -5,10 +5,9 @@ class Solution {
         int n=coins.length;
         dp=new int[amount+1][coins.length+1];
         for(int i=0;i<dp.length;i++){
-            for(int j=0;j<dp[0].length;j++){
-                dp[i][j]=-1;
+           Arrays.fill(dp[i],-1);
             }
-        }
+        
         return solve(amount,coins,0);
         
     }
@@ -16,19 +15,22 @@ class Solution {
         if(amount==0){
             return 1;
         }
-        if (amount < 0) return 0;
+        
         if(i==coins.length){
             return 0;
 
         }
-        if(coins[i]>amount){
-            solve(amount,coins,i+1);
-
-        }
+       
         if(dp[amount][i]!=-1){
             return dp[amount][i];
         }
-        int take=solve(amount-coins[i],coins,i);
+        int take=0;
+         if(coins[i]<=amount){
+            take=solve(amount-coins[i],coins,i);
+         }
+
+        
+       
         int skip=solve(amount,coins,i+1);
        return dp[amount][i]= take+skip;
     }
