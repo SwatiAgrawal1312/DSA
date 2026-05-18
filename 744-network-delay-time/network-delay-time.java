@@ -1,47 +1,43 @@
 class Solution {
     public int networkDelayTime(int[][] times, int n, int k) {
-        int result[]=new int[n+1];
-        Arrays.fill(result,Integer.MAX_VALUE);
-        result[k]=0;
-        PriorityQueue<int []>pq=new PriorityQueue<>((a,b)->a[0]-b[0]);
-        ArrayList<int []>[] adj=new ArrayList[n+1];
-        for(int i=1;i<n+1;i++){
-            adj[i]=new ArrayList<>();
-
-        }
-        for(int i=0;i<times.length;i++){
-            int x[]=times[i];
-            int u=x[0];
-            int v=x[1];
-            int w=x[2];
-            adj[u].add(new int[]{v,w});
-
-
-        }
-        pq.offer(new int[]{0,k});
+        PriorityQueue<int[]> pq=new PriorityQueue<>(Comparator.comparingInt(a->a[0]));
+        int res[]=new int[n+1];
+        Arrays.fill(res,Integer.MAX_VALUE);
+        res[k]=0;
+        pq.add(new int[]{0,k});
         while(!pq.isEmpty()){
             int curr[]=pq.poll();
-            int d=curr[0];
-            int nodes=curr[1];
-            for(int a[]:adj[nodes]){
-                int ngbr=a[0];
-                int dist=a[1];
-                if(d+dist<result[ngbr]){
-                    result[ngbr]=d+dist;
-                    pq.offer(new int[]{d+dist,ngbr});
+            int dist=curr[0];
+            int node=curr[1];
+           
+            for(int i=0;i<times.length;i++){
+               int u=times[i][0];
+               int v=times[i][1];
+               int w=times[i][2];
+               if(u==node){
+                int ngh=v;
+                int d=w;
+                int sum=dist+d;
+                if(sum<res[ngh]){
+                    res[ngh]=sum;
+                    pq.add(new int[]{sum,ngh});
                 }
+               }
+
             }
 
 
         }
-        int maxy=Integer.MIN_VALUE;
-        for(int i=1;i<result.length;i++){
-            if(result[i]==Integer.MAX_VALUE){
+       
+        
+        int max=0;
+        for(int i=1;i<=n;i++){
+            if(res[i]==Integer.MAX_VALUE){
                 return -1;
             }
-            maxy=Math.max(maxy,result[i]);
+            max=Math.max(max,res[i]);
         }
-        return maxy;
+        return max;
 
         
     }
