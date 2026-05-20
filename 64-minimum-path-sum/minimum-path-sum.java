@@ -18,7 +18,7 @@ class Solution {
         if(i>=m || j>=n){
             return Integer.MAX_VALUE;
         }
-        if(i==m-1 && j==n-1){
+        if(i==m-1 && j==n-1){   
             return grid[i][j];
 
         }
@@ -26,9 +26,9 @@ class Solution {
             return dp[i][j];
         }
 
-        int x=solve(grid,i+1,j);
-        int y=solve(grid,i,j+1);
-        return dp[i][j]=grid[i][j]+Math.min(x,y);
+
+        
+        return dp[i][j]=grid[i][j]+Math.min(solve(grid,i+1,j),solve(grid,i,j+1));
        
         
     }
