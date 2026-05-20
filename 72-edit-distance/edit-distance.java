@@ -1,29 +1,31 @@
 class Solution {
-    int dp[][];
+    int dp[][]=new int[501][501];
     public int minDistance(String word1, String word2) {
-        dp=new int[word1.length()][word2.length()];
         for(int rows[]:dp){
-            Arrays.fill(rows,-1);
+          Arrays.fill(rows,-1);
         }
-        return helper(word1,word2,0,0);
+        
+        return solver(word1,word2,0,0);
         
     }
-    public int helper(String word1, String word2,int i,int j){
-        if(i==word1.length()){
-          return word2.length()-j;
+    public int solver(String word1, String word2,int i,int j){
+        int m=word1.length();
+        int n=word2.length();
+        if(i==m){
+          return n-j;
         }
-        if(j==word2.length()){
-             return word1.length()-i;
-
+        if(j==n){
+            return m-i;
         }
         if(dp[i][j]!=-1){
             return dp[i][j];
         }
         if(word1.charAt(i)==word2.charAt(j)){
-            return dp[i][j]=helper(word1,word2,i+1,j+1);
-        }else{
-            return dp[i][j]=Math.min(1+helper(word1,word2,i,j+1),Math.min(1+helper(word1,word2,i+1,j),1+helper(word1,word2,i+1,j+1)));
+            return dp[i][j]=solver(word1,word2,i+1,j+1);
         }
-        
+        int insert=1+solver(word1,word2,i,j+1);
+        int delete=1+solver(word1,word2,i+1,j);
+        int replace=1+solver(word1,word2,i+1,j+1);
+        return dp[i][j]=Math.min(insert,(Math.min(delete,replace)));
     }
 }
