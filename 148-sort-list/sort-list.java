@@ -10,30 +10,60 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-
-        
-        ArrayList<Integer> arr=new ArrayList<>();
-        ListNode temp = head;
-        while(temp!=null){
-            arr.add(temp.val);
-            temp=temp.next;
+        if(head==null || head.next==null){
+            return head;
         }
-        Collections.sort(arr);
-        // create new LinkedList
-        ListNode dummy=new ListNode(-1);
-        ListNode curr=dummy;
-        for(int i=0;i<arr.size();i++){
-            curr.next=new ListNode(arr.get(i));
-            curr=curr.next;
-        }
-        return dummy.next;
-        
+        ListNode mid=findMiddle(head);
+        ListNode right=mid.next;
+        mid.next=null;
 
-        
-        
+        ListNode left=sortList(head);
+        ListNode righthalf=sortList(right);
+        return merge(left,righthalf);
 
 
-        
         
     }
+    public ListNode findMiddle(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head.next;
+        while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
+        }
+        return slow;
+    } 
+    public ListNode merge(ListNode left,ListNode righthalf){
+        ListNode dummy=new ListNode(-1);
+        ListNode x=dummy;
+        while(left!=null && righthalf!=null){
+            if(left.val<=righthalf.val){
+                x.next=left;
+                x=x.next;
+                left=left.next;
+
+            }
+            else{
+                x.next=righthalf;
+                x=x.next;
+                righthalf=righthalf.next;
+
+            }
+        }
+        while(left!=null){
+           x.next=left;
+                x=x.next;
+                left=left.next;
+
+        }
+        while(righthalf!=null){
+             x.next=righthalf;
+                x=x.next;
+                righthalf=righthalf.next;
+
+        }
+        return dummy.next;
+    }
+
+    
 }
