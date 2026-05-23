@@ -1,24 +1,20 @@
 class Solution {
-    int n;
+    int count=0;
     public int findTargetSumWays(int[] nums, int target) {
-        n=nums.length;
-        return solve(nums,0,0,target);
+        solver(nums,target,0,0);
+        return count;
+
         
     }
-    public int solve(int[] nums,int i,int sum,int target){
-        if(i>=n){
+    public void solver(int nums[],int target,int i,int sum){
+        if(i>=nums.length){
             if(sum==target){
-                return 1;
-
+                count++;
             }
-            else{
-                return 0;
-
-            }
+            return;
         }
-        int plus=solve(nums,i+1,sum+nums[i],target);
-        int minus=solve(nums,i+1,sum-nums[i],target);
-        return plus+minus;
-
+        solver(nums,target,i+1,sum+nums[i]);
+        solver(nums,target,i+1,sum-nums[i]);
+        
     }
 }
