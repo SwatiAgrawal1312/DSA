@@ -2,11 +2,10 @@ class Solution {
     public int majorityElement(int[] nums) {
         HashMap<Integer,Integer> hm=new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            int ch=nums[i];
-            if(hm.containsKey(ch)){
-                hm.put(ch,hm.get(ch)+1);
+            if(hm.containsKey(nums[i])){
+                hm.put(nums[i],hm.get(nums[i])+1);
             }else{
-                hm.put(ch,1);
+                hm.put(nums[i],1);
             }
         }
         for(int x:hm.keySet()){
