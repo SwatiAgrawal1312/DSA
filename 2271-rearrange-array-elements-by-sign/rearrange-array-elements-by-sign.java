@@ -3,15 +3,15 @@ class Solution {
         int res[]=new int[nums.length];
         int j=0;
         int k=1;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]>0){
-                res[j]=nums[i];
+        for(int x:nums){
+            if(x>0){
+                res[j]=x;
                 j+=2;
                 
                
 
-            }else if(nums[i]<=0){
-                res[k]=nums[i];
+            }else{
+                res[k]=x;
                 k+=2;
                 
 
