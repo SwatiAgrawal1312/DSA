@@ -20,13 +20,10 @@ class Solution {
             char first=s.charAt(i-1);
             char second=s.charAt(i);
             char third=s.charAt(i+1);
-            if(second>first && second>third){
+            if(second>first && second>third || second<first && second<third){
                 add+=1;
 
-            }else if(second<first && second<third){
-                add+= 1;
             }
-            
         }
         return add;
     }
