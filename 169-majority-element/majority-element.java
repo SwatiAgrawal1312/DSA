@@ -19,17 +19,17 @@ class Solution {
             
 
         }
-        int total=0;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]==candidate){
-                total++;
+        // int total=0;
+        // for(int i=0;i<nums.length;i++){
+        //     if(nums[i]==candidate){
+        //         total++;
                 
-            }
-        }
-        if(total>nums.length/2){
-            return candidate;
-        }
-        return -1;
+        //     }
+        // }
+        // if(total>nums.length/2){
+        //     return candidate;
+        // }
+        return candidate;
         
     }
 }
