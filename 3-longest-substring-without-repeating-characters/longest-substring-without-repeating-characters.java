@@ -3,16 +3,16 @@ class Solution {
         if(s.length()==0){
             return 0;
         }
-        HashSet<Character> hs=new HashSet<>();
+        HashMap<Character,Integer> hm=new HashMap<>();
         int j=0;
         int maxLength=Integer.MIN_VALUE;
         for(int i=0;i<s.length();i++){
             char ch=s.charAt(i);
-            while(hs.contains(ch)){
-                hs.remove(s.charAt(j));
-                j++;
+            if(hm.containsKey(ch)){
+               j=Math.max(j,hm.get(ch)+1);
+                
             }
-            hs.add(ch);
+            hm.put(ch,i);
             maxLength=Math.max(maxLength,i-j+1);
 
         }
