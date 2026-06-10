@@ -11,6 +11,9 @@
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null || headB==null){
+            return null;
+        }
         ListNode x=headA;
         ListNode y=headB;
         int sz1=0;
@@ -24,27 +27,34 @@ public class Solution {
             sz2++;
             y=y.next;
         }
-        int d1=0;
+        int diff=Math.abs(sz1-sz2);
+        
         if(sz1>sz2){
-            d1=sz1-sz2;
+            while(diff>0){
+                headA=headA.next;
+                diff--;
+
+            }
+           
         }
-        int d2=0;
+       
         if(sz2>sz1){
-            d2=sz2-sz1;
+            while(diff>0){
+                headB=headB.next;
+                diff--;
+
+            }
+            
         }
-        while(d2>0){
+        
+        while(headA!=null && headB!=null){
+            if(headA==headB){
+                return headA;
+            }
             headB=headB.next;
-            d2--;
-        }
-        while(d1>0){
             headA=headA.next;
-            d1--;
-        }
-        while(headA!=headB){
-             headB=headB.next;
-              headA=headA.next;
 
         }
-        return headA;
+        return null;
     }
 }
