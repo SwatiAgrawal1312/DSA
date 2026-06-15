@@ -4,7 +4,9 @@ class Solution {
         
         Arrays.sort(nums);
         List<List<Integer>> res=new ArrayList<>();
-        
+         if(nums.length==3 && (nums[0]+nums[1]+nums[2])!=0){
+            return res;
+        }
         for(int i=0;i<=nums.length-3;i++){
             if(i>0 && nums[i]==nums[i-1]){
                 continue;
