@@ -9,12 +9,12 @@ class Solution {
             if(g[i]<=s[j]){
                 count++;
                 i++;
-                j++;
-            }else{
-                j++;
             }
+                j++;
 
+           
         }
         return count;
+        
     }
 }
