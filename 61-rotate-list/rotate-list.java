@@ -13,11 +13,11 @@ class Solution {
         if(head==null || head.next==null ||k==0){
             return head;
         }
-        ListNode temp=head;
-        int count=0;
-        while(temp!=null){
+        ListNode tail=head;
+        int count=1;
+        while(tail.next!=null){
             count++;
-            temp=temp.next;
+            tail=tail.next;
         }
         k=k%count;
         if(k==0){
@@ -33,10 +33,6 @@ class Solution {
         }
         ListNode start=prev.next;
         prev.next=null;
-        ListNode tail=start;
-        while(tail.next!=null){
-            tail=tail.next;
-        }
         tail.next=head;
         return start;
         
