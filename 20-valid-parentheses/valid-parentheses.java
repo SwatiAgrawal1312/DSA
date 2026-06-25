@@ -12,7 +12,6 @@ class Solution {
                 }
 
             }
-            
             else if(ch==')' && st.peek()=='(' || ch=='}' && st.peek()=='{' ||  ch==']' && st.peek()=='['  ){
                 st.pop();
 
