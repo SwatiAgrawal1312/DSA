@@ -1,22 +1,18 @@
 class Solution {
     public boolean compare(String s1, String s2,int i){
-        int j=i,k=0;
-        int l2=s2.length();
-        int count=0;
-        for(int t=i;t<s1.length();t++){
-            count++;
+        int start=i;
+        if(s1.length()-start<s2.length()){
+            return false;
+        }
+       
+        int j=0;
+       while(j<s2.length()){
+        if(s1.charAt(start+j)!=s2.charAt(j)){
+            return false;
+        }
 
-        }
-        if(count<l2){
-            return false;
-        }
-        
-       while(j<s1.length() && k<s2.length()){
-        if(s1.charAt(j)!=s2.charAt(k)){
-            return false;
-        }
         j++;
-        k++;
+       
        }
        return true;
     }
