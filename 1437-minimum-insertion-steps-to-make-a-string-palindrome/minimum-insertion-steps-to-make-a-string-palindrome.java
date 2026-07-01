@@ -2,7 +2,7 @@ class Solution {
     int dp[][];
     public int minInsertions(String s) {
         int n=s.length();
-        dp=new int[n+1][n+1];
+        dp=new int[n][n];
         for(int row[]:dp){
             Arrays.fill(row,-1);
         }
