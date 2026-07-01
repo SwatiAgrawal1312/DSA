@@ -1,24 +1,25 @@
 class Solution {
-    int dp[][]=new int[501][501];
+    int dp[][];
     public int minInsertions(String s) {
-        for(int rows[]:dp){
-            Arrays.fill(rows,-1);
+        dp=new int[501][501];
+        for(int row[]:dp){
+            Arrays.fill(row,-1);
         }
-        return solver(s,0,s.length()-1);
+        return insert(s,0,s.length()-1);
         
     }
-    public int solver(String s,int i,int j){
-        if(j<i){
+    public int insert(String s,int i,int j){
+        if(i>=j){
             return 0;
         }
         if(dp[i][j]!=-1){
             return dp[i][j];
         }
         if(s.charAt(i)==s.charAt(j)){
-            return dp[i][j]=solver(s,i+1,j-1);
+            return dp[i][j]=insert(s,i+1,j-1);
         }
-        int inc_i=1+solver(s,i+1,j);
-        int dec_j=1+solver(s,i,j-1);
-        return dp[i][j]=Math.min(inc_i,dec_j);
+        int x=1+insert(s,i+1,j);
+        int y=1+insert(s,i,j-1);
+        return dp[i][j]=Math.min(x,y);
     }
 }
