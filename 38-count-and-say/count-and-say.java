@@ -1,35 +1,24 @@
 class Solution {
     public String countAndSay(int n) {
-
-        String result = "1";
-
-        for (int i = 2; i <= n; i++) {
-            result = generateNext(result);
+        if(n==1){
+            return "1";
         }
-
-        return result;
-    }
-
-    private String generateNext(String s) {
-
-        StringBuilder sb = new StringBuilder();
-        int count = 1;
-
-        for (int i = 1; i < s.length(); i++) {
-
-            if (s.charAt(i) == s.charAt(i - 1)) {
+        String s=countAndSay(n-1);
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            int count=1;
+            while(i<s.length()-1 && s.charAt(i)==s.charAt(i+1)){
                 count++;
-            } else {
-                sb.append(count);
-                sb.append(s.charAt(i - 1));
-                count = 1;
+                i++;
+
             }
+            
+            sb.append(count);
+            sb.append(ch);
+
         }
-
-        // Add the last group
-        sb.append(count);
-        sb.append(s.charAt(s.length() - 1));
-
         return sb.toString();
+        
     }
 }
