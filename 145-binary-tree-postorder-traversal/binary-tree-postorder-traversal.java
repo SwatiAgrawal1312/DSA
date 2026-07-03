@@ -15,18 +15,21 @@
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> result=new ArrayList<>();
-        solver(root,result);
-        return result;
+        List<Integer> res=new ArrayList<>();
+        findpostorder(root,res);
+        return res;
+
         
     }
-    public static void solver(TreeNode root,List<Integer> result){
+    public void findpostorder(TreeNode root,List<Integer> res){
         if(root==null){
             return;
         }
-        solver(root.left,result);
+        findpostorder(root.left,res);
+
+       
+        findpostorder(root.right,res);
+        res.add(root.val);
         
-        solver(root.right,result);
-        result.add(root.val);
     }
 }
