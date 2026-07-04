@@ -15,21 +15,40 @@
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res=new ArrayList<>();
-        findpreorder(root,res);
-        return res;
+         List<Integer> ans = new ArrayList<>();
+        TreeNode curr = root;
 
-        
-    }
-    public void findpreorder(TreeNode root,List<Integer> res){
-        if(root==null){
-            return;
+        while (curr != null) {
+
+            
+            if (curr.left == null) {
+                ans.add(curr.val);
+                curr = curr.right;
+            } 
+            else {
+
+               
+                TreeNode prev = curr.left;
+
+                while (prev.right != null && prev.right != curr) {
+                    prev = prev.right;
+                }
+
+               
+                if (prev.right == null) {
+                    ans.add(curr.val);      
+                    prev.right = curr;
+                    curr = curr.left;
+                }
+                
+                else {
+                    prev.right = null;
+                    curr = curr.right;
+                }
+            }
         }
-        res.add(root.val);
-        findpreorder(root.left,res);
 
-        
-        findpreorder(root.right,res);
+        return ans;
         
     }
 }
