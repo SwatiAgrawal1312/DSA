@@ -23,23 +23,21 @@ class Solution {
         Queue<TreeNode> q=new LinkedList<>();
         q.offer(root);
         while(!q.isEmpty()){
-            int n=q.size();
-            List<Integer> ans=new ArrayList<>();
-            for(int i=0;i<n;i++){
+            int sz=q.size();
+            List<Integer> list=new ArrayList<>();
+            for(int i=0;i<sz;i++){
                 TreeNode curr=q.poll();
-                ans.add(curr.val);
+                list.add(curr.val);
                 if(curr.left!=null){
-                    q.add(curr.left);
+                    q.offer(curr.left);
                 }
                 if(curr.right!=null){
-                    q.add(curr.right);
+                      q.offer(curr.right);
                 }
             }
-            res.add(ans);
-    
+            res.add(list);
         }
         return res;
-
         
     }
 }
