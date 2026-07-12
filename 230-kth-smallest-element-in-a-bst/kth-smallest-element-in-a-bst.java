@@ -35,11 +35,8 @@ class Solution {
         if(k==pos){
             return root;
         }
-        TreeNode right=solver(root.right,k);
-        if(right!=null){
-            return right;
-        }
-        return null;
+        return solver(root.right,k);
+        
 
 
     }
