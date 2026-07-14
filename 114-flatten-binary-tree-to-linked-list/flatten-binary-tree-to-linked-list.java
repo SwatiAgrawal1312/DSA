@@ -25,7 +25,7 @@ class Solution {
         flatten(root.left);
         root.left=null;
         root.right=nextnode;
-       nextnode=root;
+        nextnode=root;
 
         
     }
