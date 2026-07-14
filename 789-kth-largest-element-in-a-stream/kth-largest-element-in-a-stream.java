@@ -3,29 +3,20 @@ class KthLargest {
     int k;
     public KthLargest(int k, int[] nums) {
         this.k=k;
-        int count=0;
-        for(int i=0;i<nums.length;i++){
+        for(int i:nums){
             
-            pq.offer(nums[i]);
+            pq.offer(i);
             if(pq.size()>k){
                 pq.poll();
             }
-           
-            
-           
-           
         }
-
-        
-    }
-    
+        }
     public int add(int val) {
         pq.offer(val);
         if(pq.size()>k){
             pq.poll();
         }
         return pq.peek();
-        
     }
 }
 
