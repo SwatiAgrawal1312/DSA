@@ -8,39 +8,36 @@ class Solution {
             adj.add(new ArrayList<>());
         }
 
+        int[] indegree = new int[numCourses];
+
         for (int[] pre : prerequisites) {
             adj.get(pre[1]).add(pre[0]);
+            indegree[pre[0]]++;
         }
 
-        int[] state = new int[numCourses];
+        Queue<Integer> queue = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
-            if (state[i] == 0) {
-                if (dfs(i, adj, state))
-                    return false;
+            if (indegree[i] == 0)
+                queue.offer(i);
+        }
+
+        int count = 0;
+
+        while (!queue.isEmpty()) {
+
+            int node = queue.poll();
+            count++;
+
+            for (int next : adj.get(node)) {
+
+                indegree[next]--;
+
+                if (indegree[next] == 0)
+                    queue.offer(next);
             }
         }
 
-        return true;
-    }
-
-    private boolean dfs(int node, List<List<Integer>> adj, int[] state) {
-
-        state[node] = 1;
-
-        for (int next : adj.get(node)) {
-
-            if (state[next] == 1)
-                return true;
-
-            if (state[next] == 0) {
-                if (dfs(next, adj, state))
-                    return true;
-            }
-        }
-
-        state[node] = 2;
-
-        return false;
+        return count == numCourses;
     }
 }
