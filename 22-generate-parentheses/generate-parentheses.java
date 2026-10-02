@@ -1,26 +1,33 @@
 class Solution {
-    List<String> res=new ArrayList<>();
-    
-    
-    
     public List<String> generateParenthesis(int n) {
-       
-        helper("",0,0,n);
+        List<String> res=new ArrayList<>();
+        solve("",n,res);
         return res;
-        }
-        public void helper(String curr,int open,int close ,int n){
-        if(curr.length()==2*n){
-           res.add(curr);
-           return;
-            }
-           
         
-        if(open<n){
-          helper(curr+"(",open+1,close,n);
-        } 
-        if(close<open){
-           helper(curr+")",open,close+1,n);
-        } 
-       
-       }
     }
+    public void solve(String curr,int n,List<String> res){
+        if(curr.length()==2*n){
+            if(is_valid(curr)){
+                res.add(curr);
+            }
+            return;
+        }
+        solve(curr+'(',n,res);
+        solve(curr+')',n,res);
+
+    }
+    public boolean is_valid(String s){
+        int count=0;
+        for(char ch:s.toCharArray()){
+            if(ch=='('){
+                count++;
+            }else{
+                count--;
+            }
+            if(count<0){
+                return false;
+            }
+        }
+        return count==0;
+    }
+}
