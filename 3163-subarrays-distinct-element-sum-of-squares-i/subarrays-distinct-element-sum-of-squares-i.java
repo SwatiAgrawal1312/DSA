@@ -8,8 +8,8 @@ class Solution {
             hs=new HashSet<>();
             for(int j=i;j<nums.size();j++){
                 hs.add(nums.get(j));
-                int count=hs.size();
-                ans+=count*count;
+                
+                ans+=hs.size()*hs.size();
 
 
             }
